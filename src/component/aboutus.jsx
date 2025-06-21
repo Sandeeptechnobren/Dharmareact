@@ -38,7 +38,7 @@ const AboutUs=()=>{
       <div className="team-grid">
         {/* Team Member 1 */}
         <div className="team-card">
-          <img src="/src/images/image.jpg" alt="Sandeep Kumar Patel" className="team-photo" />
+          <img src="public/image.jpg" alt="Sandeep Kumar Patel" className="team-photo" />
           <div className="team-info">
             <h3>Sandeep Kumar Patel</h3>
             <p><strong>Founder &amp; Lead Developer</strong></p>
@@ -47,7 +47,7 @@ const AboutUs=()=>{
         </div>
         {/* Team Member 2 */}
         <div className="team-card">
-          <img src="/src/images/sapnil.JPG" alt="Senior Developer" className="team-photo" />
+          <img src="public/sapnil.JPG" alt="Senior Developer" className="team-photo" />
           <div className="team-info">
             <h3>Swapnil</h3>
             <p><strong>Social Media and Promotion Manager</strong></p>
@@ -56,7 +56,7 @@ const AboutUs=()=>{
         </div>
         {/* Team Member 3 */}
         <div className="team-card">
-          <img src="/src/images/dharmalogo.png" alt="Educator & Course Developer" className="team-photo" />
+          <img src="public/dharmalogo.png" alt="Educator & Course Developer" className="team-photo" />
           <div className="team-info">
             <h3>[Team Member Name]</h3>
             <p><strong>Designation</strong></p>
