@@ -144,6 +144,9 @@ function Navbar() {
           <li className="nav-item rounded">
             <Link to="/gallery" className="nav-link">Gallery</Link>
           </li>
+          <li className="nav-item rounded">
+            <Link to="/admin" className="nav-link">Admin</Link>
+          </li>
           {state.isLogin ? (
             <>
             <li className="nav-item me-1 rounded"
