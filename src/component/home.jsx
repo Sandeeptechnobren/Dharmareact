@@ -59,7 +59,7 @@ const Home = () => {
                 </div>
                 <div className="col-md-4 card_decor">
                   <div className="feature-box">
-                    <img src="src/images/appdev.jpg" alt="Mobile App Development" className="serviceimage" />
+                    <img src="/appdev.jpg" alt="Mobile App Development" className="serviceimage" />
                     <h3>Mobile App Development</h3>
                     <p>Creating user-friendly mobile apps for iOS and Android platforms.</p>
                   </div>

@@ -28,11 +28,11 @@ const Gallery = () => {
 
       {/* Image Gallery Section */}
       <section className="gallery">
-        <div className="gallery-item" onClick={() => openModal("/src/images/dharmaimg1.jpg")}>
+        <div className="gallery-item" onClick={() => openModal("/dharmaimg1.jpg")}>
           <div className="flip-card">
             <div className="flip-card-inner">
               <div className="flip-card-front">
-                <img src="/src/images/dharmaimg1.jpg" alt="Project 1" />
+                <img src="/dharmaimg1.jpg" alt="Project 1" />
               </div>
               <div className="flip-card-back">
                 <p>Project 1 Description</p>
@@ -40,11 +40,11 @@ const Gallery = () => {
             </div>
           </div>
         </div>
-        <div className="gallery-item" onClick={() => openModal("/src/images/dharmamog2.jpg")}>
+        <div className="gallery-item" onClick={() => openModal("/dharmamog2.jpg")}>
           <div className="flip-card">
             <div className="flip-card-inner">
               <div className="flip-card-front">
-                <img src="/src/images/dharmamog2.jpg" alt="Project 2" />
+                <img src="/dharmamog2.jpg" alt="Project 2" />
               </div>
               <div className="flip-card-back">
                 Project 2 Description
@@ -70,13 +70,13 @@ const Gallery = () => {
                   <div className="modalimage">
                     {/* Dynamically change the image in the modal */}
                     <div className="img" style={{ backgroundImage: `url(${modalImage})` }} />
-                    <div className="img" style={{ backgroundImage: `url(/src/images/dharmalogo.png)` }} />
+                    <div className="img" style={{ backgroundImage: `url(/dharmalogo.png)` }} />
                     <div className="img" style={{ backgroundImage: `url(${modalImage})` }} />
-                    <div className="img" style={{ backgroundImage: `url(/src/images/dharmalogo.png)` }} />
+                    <div className="img" style={{ backgroundImage: `url(/dharmalogo.png)` }} />
                     <div className="img" style={{ backgroundImage: `url(${modalImage})` }} />
-                    <div className="img" style={{ backgroundImage: `url(/src/images/dharmalogo.png)` }} />
+                    <div className="img" style={{ backgroundImage: `url(/dharmalogo.png)` }} />
                     <div className="img" style={{ backgroundImage: `url(${modalImage})` }} />
-                    <div className="img" style={{ backgroundImage: `url(/src/images/dharmalogo.png)` }} />
+                    <div className="img" style={{ backgroundImage: `url(/dharmalogo.png)` }} />
                     <div className="img" style={{ backgroundImage: `url(${modalImage})` }} />
 
 
@@ -101,14 +101,14 @@ const Gallery = () => {
       <div className="d-flex flex-row justify-content-center row">
         <div className="music-card mx-2 col-md-5">
           <div className="title">Dharma Soft-Tech Title Song</div><br />
-          <img src="/src/images/dharmalogo.png" alt="Cover Image" className="cover-image" />
+          <img src="/dharmalogo.png" alt="Cover Image" className="cover-image" />
           <div className="card-content">
             <audio src="(Verse 1) (1).mp3" controls id="audio1" />
           </div>
         </div>
         <div className="music-card mx-2 col-md-5">
           <div className="title">Dharma Soft-Tech Title Song</div><br />
-          <img src="/src/images/dharmalogo.png" alt="Cover Image" className="cover-image" id="image2" />
+          <img src="/dharmalogo.png" alt="Cover Image" className="cover-image" id="image2" />
           <div className="card-content">
             <audio src="(Verse 1).mp3" controls className />
           </div>

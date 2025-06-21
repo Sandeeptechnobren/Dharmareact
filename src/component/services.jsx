@@ -147,7 +147,7 @@ console.log("Logged-in user details:", user);
                         New
                       </span>
                     )}
-                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={service.serviceName} style={{ height: 150, width: 150 }} />
+                    <img src="/dharmalogo.png" className="card-img-top" alt={service.serviceName} style={{ height: 150, width: 150 }} />
                     <div className="card-body">
                       <h5 className="card-title">{service.serviceName}</h5>
                       <p className="card-text">{service.serviceDescription}</p>
@@ -180,7 +180,7 @@ console.log("Logged-in user details:", user);
                         New
                       </span>
                     )}
-                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={course.courseName} style={{ height: 150, width: 150 }} />
+                    <img src="/dharmalogo.png" className="card-img-top" alt={course.courseName} style={{ height: 150, width: 150 }} />
                     <div className="card-body">
                       <h5 className="card-title">{course.courseName}</h5>
                       <p className="card-text">{course.courseDescription}</p>
@@ -208,7 +208,7 @@ console.log("Logged-in user details:", user);
               {learningList.map((course, index) => (
                 <div className="col-md-4" key={index}>
                   <div className="card text-center">
-                    <img src="/src/images/dharmalogo.png" className="card-img-top" style={{ height: 150, width: 150 }} />
+                    <img src="/dharmalogo.png" className="card-img-top" style={{ height: 150, width: 150 }} />
                     <div className="card-body">
                       <h5 className="card-title">{course.courseName}</h5>
                       <button className="btn btn-danger" onClick={() => removeFromLearningList(index)}>
