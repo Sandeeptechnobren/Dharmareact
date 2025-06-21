@@ -112,7 +112,7 @@ function Navbar() {
   return (
     <div className="navbar navbar-expand-lg bg-light navbar1" style={{ position: "sticky", top: 0, left: 0 }}>
       <a className="navbar-brand ms-2" href="#">
-        <img className="logoimage" src="/src/images/dharmalogo.png" alt="Dharma Logo" />
+        <img className="logoimage" src="/dharmalogo.png" alt="Dharma Logo" />
         <b className="text-danger">&nbsp; Dharma </b>Soft-Tech
       </a>
       <button
