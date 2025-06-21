@@ -13,7 +13,7 @@ function AdminNavbar() {
       <a className="navbar-brand ms-2" href="#">
         <img
           className="logoimage"
-          src="/src/images/dharmalogo.png" // Update the image path if incorrect
+          src="/dharmalogo.png" // Update the image path if incorrect
           alt="Dharma Logo"
           style={{ height: "40px", marginRight: "10px" }}
         />

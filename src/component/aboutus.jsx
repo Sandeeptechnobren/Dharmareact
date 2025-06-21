@@ -14,7 +14,7 @@ const AboutUs=()=>{
     <div className="row justify-content-center mb-5">
       {/* Welcome Section */}
       <div className="aboutuscontent  text-center bg-light col-12 col-md-5 px-6">
-        <img src="src/images/welcome-removebg-preview.png" alt="Welcome Icon" height="60px" width="60px" className="mt-3 mb-3 pngimage" />
+        <img src="/welcome-removebg-preview.png" alt="Welcome Icon" height="60px" width="60px" className="mt-3 mb-3 pngimage" />
         <h4 className="mb-3"><b>Welcome to Dharma Soft-Tech</b></h4>
         <p className="px-lg-5 px-md-3">
           At Dharma Soft-Tech, we are dedicated to simplifying the world of coding and software development. Our mission is to create innovative solutions that not only make coding easier and more precise but also empower the next generation of developers through practical learning experiences.
@@ -22,7 +22,7 @@ const AboutUs=()=>{
       </div>
       {/* Vision Section */}
       <div className="aboutuscontent  text-center bg-light col-12 col-md-5 px-6">
-        <img src="src/images/our_vision-removebg-preview.png" alt="Our Vision Icon" height="60px" width="60px" className="mt-3 mb-3 pngimage" />
+        <img src="/our_vision-removebg-preview.png" alt="Our Vision Icon" height="60px" width="60px" className="mt-3 mb-3 pngimage" />
         <h4 className="mb-3"><b>Our Vision</b></h4>
         <p className="px-lg-5 px-md-3">
           At Dharma Soft-tech, our vision is to bridge the gap between complex technology and everyday users. Beyond building innovative software solutions, we aim to cultivate the next generation of tech talent by offering hands-on, practical coding education. Through real-world projects and immersive learning experiences, we empower students to become confident, capable developers who can solve real challenges in the industry.
@@ -38,7 +38,7 @@ const AboutUs=()=>{
       <div className="team-grid">
         {/* Team Member 1 */}
         <div className="team-card">
-          <img src="public/image.jpg" alt="Sandeep Kumar Patel" className="team-photo" />
+          <img src="image.jpg" alt="Sandeep Kumar Patel" className="team-photo" />
           <div className="team-info">
             <h3>Sandeep Kumar Patel</h3>
             <p><strong>Founder &amp; Lead Developer</strong></p>
@@ -47,7 +47,7 @@ const AboutUs=()=>{
         </div>
         {/* Team Member 2 */}
         <div className="team-card">
-          <img src="public/sapnil.JPG" alt="Senior Developer" className="team-photo" />
+          <img src="sapnil.JPG" alt="Senior Developer" className="team-photo" />
           <div className="team-info">
             <h3>Swapnil</h3>
             <p><strong>Social Media and Promotion Manager</strong></p>
@@ -56,7 +56,7 @@ const AboutUs=()=>{
         </div>
         {/* Team Member 3 */}
         <div className="team-card">
-          <img src="public/dharmalogo.png" alt="Educator & Course Developer" className="team-photo" />
+          <img src="dharmalogo.png" alt="Educator & Course Developer" className="team-photo" />
           <div className="team-info">
             <h3>[Team Member Name]</h3>
             <p><strong>Designation</strong></p>
