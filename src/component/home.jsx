@@ -52,7 +52,7 @@ const Home = () => {
               <div className="row">
                 <div className="col-md-4 card_decor">
                   <div className="feature-box">
-                    <img src="public/softwaredev.jpg" className="serviceimage" alt="Software Development" />
+                    <img src="/softwaredev.jpg" className="serviceimage" alt="Software Development" />
                     <h3>Software Development</h3>
                     <p>Tailored software solutions to meet your unique business needs.</p>
                   </div>
@@ -66,7 +66,7 @@ const Home = () => {
                 </div>
                 <div className="col-md-4 card_decor">
                   <div className="feature-box">
-                    <img src="public/clouddev.jpg" alt="Cloud Integration" className="serviceimage" />
+                    <img src="/clouddev.jpg" alt="Cloud Integration" className="serviceimage" />
                     <h3>Cloud Integration</h3>
                     <p>Seamless integration of cloud services to enhance business operations.</p>
                   </div>
@@ -117,7 +117,7 @@ const Home = () => {
                         </span>
                       )}
                       <img
-                        src={testimonial.image || "public/default.png"}
+                        src={testimonial.image || "/default.png"}
                         alt={`Client ${testimonial.stdName}`}
                         className="testimonial-image"
                         style={{
