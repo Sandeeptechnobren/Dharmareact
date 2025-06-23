@@ -26,10 +26,12 @@ console.log("Logged-in user details:", user);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const servicesResponse = await axios.get('http://localhost:4000/api/services');
-        setServices(servicesResponse.data || []);
+        // const servicesResponse = await axios.get('http://127.0.0.1:8000/web/services');
+        // setServices(servicesResponse.data || []);
 
-        const coursesResponse = await axios.get('http://localhost:4000/api/courses');
+        const coursesResponse = await axios.get('http://127.0.0.1:8000/api/courses');
+        console.log('Courses API response:', coursesResponse); // Log entire response
+        console.log('Courses data:', coursesResponse.data);    // Log just the data
         setCourses(coursesResponse.data || []);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -107,7 +109,7 @@ console.log("Logged-in user details:", user);
   };
 
   const filteredServices = services.filter((service) => service.serviceName?.toLowerCase().includes(searchInput));
-  const filteredCourses = courses.filter((course) => course.courseName?.toLowerCase().includes(searchInput));
+  const filteredCourses = courses.filter((course) => course.title?.toLowerCase().includes(searchInput));
 
   return (
     <div>
@@ -142,12 +144,12 @@ console.log("Logged-in user details:", user);
               filteredServices.map((service) => (
                 <div className="col-md-4 mb-4" key={service._id}>
                   <div className="card text-center" style={{ alignItems: 'center', position: 'relative' }}>
-                    {isNew(service.createdAt) && (
+                    {isNew(service.created_at) && (
                       <span className="badge bg-secondary" style={{ position: 'absolute', top: 10, right: 10 }}>
                         New
                       </span>
                     )}
-                    <img src="/dharmalogo.png" className="card-img-top" alt={service.serviceName} style={{ height: 150, width: 150 }} />
+                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={service.serviceName} style={{ height: 150, width: 150 }} />
                     <div className="card-body">
                       <h5 className="card-title">{service.serviceName}</h5>
                       <p className="card-text">{service.serviceDescription}</p>
@@ -173,17 +175,17 @@ console.log("Logged-in user details:", user);
           <div className="row">
             {filteredCourses.length > 0 ? (
               filteredCourses.map((course) => (
-                <div className="col-md-4 mb-4" key={course._id}>
+                <div className="col-md-4 mb-4" key={course.id}>
                   <div className="card text-center" style={{ alignItems: 'center', position: 'relative' }}>
-                    {isNew(course.createdAt) && (
+                    {isNew(course.created_At) && (
                       <span className="badge bg-secondary" style={{ position: 'absolute', top: 10, right: 10 }}>
                         New
                       </span>
                     )}
-                    <img src="/dharmalogo.png" className="card-img-top" alt={course.courseName} style={{ height: 150, width: 150 }} />
+                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={course.title} style={{ height: 150, width: 150 }} />
                     <div className="card-body">
-                      <h5 className="card-title">{course.courseName}</h5>
-                      <p className="card-text">{course.courseDescription}</p>
+                      <h5 className="card-title">{course.title}</h5>
+                      <p className="card-text">{course.description}</p>
                       <button className="btn btn-primary" onClick={() => addToLearningList(course)}>
                         Enroll Course
                       </button>
@@ -208,9 +210,9 @@ console.log("Logged-in user details:", user);
               {learningList.map((course, index) => (
                 <div className="col-md-4" key={index}>
                   <div className="card text-center">
-                    <img src="/dharmalogo.png" className="card-img-top" style={{ height: 150, width: 150 }} />
+                    <img src="/src/images/dharmalogo.png" className="card-img-top" style={{ height: 150, width: 150 }} />
                     <div className="card-body">
-                      <h5 className="card-title">{course.courseName}</h5>
+                      <h5 className="card-title">{course.title}</h5>
                       <button className="btn btn-danger" onClick={() => removeFromLearningList(index)}>
                         Remove
                       </button>
