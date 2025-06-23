@@ -26,8 +26,10 @@ console.log("Logged-in user details:", user);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const servicesResponse = await axios.get('http://127.0.0.1:8000/web/services');
-        // setServices(servicesResponse.data || []);
+        const servicesResponse = await axios.get('http://127.0.0.1:8000/api/services');
+        setServices(servicesResponse.data || []);
+
+        console.log('Services Data:', servicesResponse.data); // Log entire response
 
         const coursesResponse = await axios.get('http://127.0.0.1:8000/api/courses');
         console.log('Courses API response:', coursesResponse); // Log entire response
@@ -95,7 +97,7 @@ console.log("Logged-in user details:", user);
         email: inquiryDetails.email,
         phone: inquiryDetails.phone,
         message: inquiryDetails.message,
-        serviceName: selectedService?.serviceName,
+        serviceName: selectedService?.name,
       });
 
       if (response.status === 201) {
@@ -108,7 +110,7 @@ console.log("Logged-in user details:", user);
     }
   };
 
-  const filteredServices = services.filter((service) => service.serviceName?.toLowerCase().includes(searchInput));
+  const filteredServices = services.filter((service) => service.name?.toLowerCase().includes(searchInput));
   const filteredCourses = courses.filter((course) => course.title?.toLowerCase().includes(searchInput));
 
   return (
@@ -142,17 +144,17 @@ console.log("Logged-in user details:", user);
           <div className="row">
             {filteredServices.length > 0 ? (
               filteredServices.map((service) => (
-                <div className="col-md-4 mb-4" key={service._id}>
+                <div className="col-md-4 mb-4" key={service.id}>
                   <div className="card text-center" style={{ alignItems: 'center', position: 'relative' }}>
                     {isNew(service.created_at) && (
                       <span className="badge bg-secondary" style={{ position: 'absolute', top: 10, right: 10 }}>
                         New
                       </span>
                     )}
-                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={service.serviceName} style={{ height: 150, width: 150 }} />
+                    <img src="/src/images/dharmalogo.png" className="card-img-top" alt={service.name} style={{ height: 150, width: 150 }} />
                     <div className="card-body">
-                      <h5 className="card-title">{service.serviceName}</h5>
-                      <p className="card-text">{service.serviceDescription}</p>
+                      <h5 className="card-title">{service.name}</h5>
+                      <p className="card-text">{service.description}</p>
                       <button className="btn btn-primary" onClick={() => openInquiryForm(service)}>
                         Inquire Now
                       </button>

@@ -1,4 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+
+// export default Navbar;
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Modal, Nav, Tab, Form, Button } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
@@ -7,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 function Navbar() {
-  const { state, dispatch } = useContext(UserContext); // Access user state and dispatch
+  const { state, dispatch } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
@@ -48,14 +50,16 @@ function Navbar() {
     const password = formData.get("password");
 
     try {
-      const response = await axios.post("http://localhost:4000/api/users/login", { email, password });
+      const response = await axios.post("http://127.0.0.1:8000/api/users/login", {
+        email,
+        password
+      });
 
       if (response.status === 200 && response.data.user) {
         toast.success("Login Successful!");
-        dispatch({ type: 'LOGIN', payload: response.data.user });
+        dispatch({ type: "LOGIN", payload: response.data.user });
         handleClose();
-      }
-      else{
+      } else {
         toast.error("Unexpected server response. Please try again.");
       }
     } catch (error) {
@@ -70,9 +74,10 @@ function Navbar() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const name = formData.get("name");
-    const phone = formData.get("phone");
+    const country_code = formData.get("country_code");
+    const phone_number = formData.get("phone_number");
     const email = formData.get("email");
-    const Dob = formData.get("Dob");
+    const date_of_birth = formData.get("date_of_birth");
     const password = formData.get("password");
     const confirmPassword = formData.get("confirmPassword");
 
@@ -80,6 +85,12 @@ function Navbar() {
       toast.error("Passwords do not match!");
       return;
     }
+
+    if (!/^\d{10}$/.test(phone_number)) {
+      toast.error("Phone number must be 10 digits.");
+      return;
+    }
+
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!passwordRegex.test(password)) {
       toast.error("Password must contain at least 8 characters, including letters and numbers.");
@@ -87,13 +98,15 @@ function Navbar() {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/api/users/register", {
+      const response = await axios.post("http://127.0.0.1:8000/api/users", {
         name,
-        phone,
+        country_code,
+        phone_number,
         email,
-        Dob,
-        password,
+        date_of_birth,
+        password
       });
+
       toast.success(response.data.message || "Registration successful!");
       handleClose();
     } catch (error) {
@@ -105,32 +118,21 @@ function Navbar() {
   };
 
   const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "LOGOUT" });
     toast.info("Logged out successfully.");
   };
 
   return (
-    <div className="navbar navbar-expand-lg bg-light navbar1" style={{ position: "sticky", top: 0, left: 0 }}>
+    <div className="navbar navbar-expand-lg bg-light navbar1" style={{ position: "sticky", top: 0 }}>
       <a className="navbar-brand ms-2" href="#">
         <img className="logoimage" src="/dharmalogo.png" alt="Dharma Logo" />
         <b className="text-danger">&nbsp; Dharma </b>Soft-Tech
       </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
 
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item rounded">
-            <Link to="/" className="nav-link rounded">Home</Link>
+            <Link to="/" className="nav-link">Home</Link>
           </li>
           <li className="nav-item rounded">
             <Link to="/services" className="nav-link">Services/Courses</Link>
@@ -148,18 +150,12 @@ function Navbar() {
             <Link to="/admin" className="nav-link">Admin</Link>
           </li>
           {state.isLogin ? (
-            <>
-            <li className="nav-item me-1 rounded"
-            onClick={handleLogout}
-            >
-              <div style={{fontSize:"10px",display:"flex", flexDirection:"column"}}>
+            <li className="nav-item me-1 rounded" onClick={handleLogout}>
+              <div style={{ fontSize: "10px", display: "flex", flexDirection: "column" }}>
                 {state.welcomeMessage}
-              
                 <button className="nav-link btn bg-danger btn-link">Logout</button>
               </div>
             </li>
-
-            </>
           ) : (
             <li className="nav-item mx-1 rounded">
               <button onClick={handleShow} className="nav-link btn btn-link">Login/Sign-Up</button>
@@ -168,37 +164,30 @@ function Navbar() {
         </ul>
       </div>
 
-      {/* Modal for Login/Signup */}
+      {/* Modal */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Login/Signup</Modal.Title>
+          <Modal.Title>Login / Signup</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Tab.Container defaultActiveKey="login">
             <Nav variant="tabs">
-              <Nav.Item>
-                <Nav.Link eventKey="login">Login</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="signup">Signup</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link eventKey="forgetpassword">Forget Password</Nav.Link>
-              </Nav.Item>
+              <Nav.Item><Nav.Link eventKey="login">Login</Nav.Link></Nav.Item>
+              <Nav.Item><Nav.Link eventKey="signup">Signup</Nav.Link></Nav.Item>
+              <Nav.Item><Nav.Link eventKey="forgetpassword">Forget Password</Nav.Link></Nav.Item>
             </Nav>
             <Tab.Content>
               <Tab.Pane eventKey="login">
                 <Form onSubmit={handleLoginSubmit}>
                   <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Enter email" required />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Password" required />
                   </Form.Group>
-                  <Form.Check type="checkbox" label="Remember me" />
-                  <Button variant="primary" type="submit" className="mt-3 w-100">Login</Button>
+                  <Button type="submit" className="mt-3 w-100" variant="primary">Login</Button>
                 </Form>
               </Tab.Pane>
               <Tab.Pane eventKey="signup">
@@ -210,37 +199,36 @@ function Navbar() {
                   <Form.Group className="mb-3">
                     <Form.Label>Phone Number</Form.Label>
                     <div className="input-group">
-                      <select className="form-control" style={{ width: "80px" }}>
+                      <select className="form-control" name="country_code" style={{ width: "80px" }} required>
                         <option value="+1">+1</option>
                         <option value="+91">+91</option>
                       </select>
-                      <Form.Control name="phone" type="text" placeholder="Your phone number" required />
+                      <Form.Control name="phone_number" type="text" placeholder="Your phone number" required />
                     </div>
                   </Form.Group>
                   <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Enter your email" required />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control name="Dob" type="date" required />
+                    <Form.Control name="date_of_birth" type="date" required />
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Enter password" required />
-                    <Form.Text className="text-danger">Password must contain both letters and numbers.</Form.Text>
                   </Form.Group>
                   <Form.Group className="mb-3">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control name="confirmPassword" type="password" placeholder="Confirm password" required />
                   </Form.Group>
-                  <Button variant="primary" type="submit" className="mt-3 w-100">Sign Up</Button>
+                  <Button type="submit" className="mt-3 w-100" variant="primary">Sign Up</Button>
                 </Form>
               </Tab.Pane>
               <Tab.Pane eventKey="forgetpassword">
                 <Form onSubmit={handleCaptchaSubmit}>
                   <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" required />
                   </Form.Group>
                   <Form.Group className="mb-3">
@@ -257,7 +245,7 @@ function Navbar() {
                       {!captchaValid && <div className="invalid-feedback">Incorrect captcha answer.</div>}
                     </div>
                   </Form.Group>
-                  <Button variant="primary" type="submit" className="mt-3 w-100">Submit</Button>
+                  <Button type="submit" className="mt-3 w-100" variant="primary">Submit</Button>
                 </Form>
               </Tab.Pane>
             </Tab.Content>
@@ -265,7 +253,6 @@ function Navbar() {
         </Modal.Body>
       </Modal>
 
-      {/* Toast Notifications */}
       <ToastContainer />
     </div>
   );
