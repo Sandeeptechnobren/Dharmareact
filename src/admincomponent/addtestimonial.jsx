@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
 function Testimonial() {
-  const [stdName, setStdName] = useState('');
+  const [stdname, setstdname] = useState('');
   const [testimonial, setTestimonial] = useState('');
 
   const handleAddTestimonial = async () => {
-    const newTestimonial = { stdName, testimonialContent: testimonial };
+    const newTestimonial = { stdname, testimonial };
 
-    if (!stdName || !testimonial) {
+    if (!stdname || !testimonial) {
       alert('Please fill out all fields before adding a testimonial.');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/admin/testimonial', {
+      const response = await fetch('http://127.0.0.1:8000/api/testimonials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTestimonial),
@@ -23,7 +23,7 @@ function Testimonial() {
 
       if (response.ok) {
         alert(result.message || 'Testimonial added successfully!');
-        setStdName('');
+        setstdname('');
         setTestimonial('');
       } else {
         alert(result.message || 'Failed to add the testimonial.');
@@ -41,16 +41,16 @@ function Testimonial() {
       <div className="card shadow-lg p-4">
         <div className="card-body">
           <div className="mb-3">
-            <label htmlFor="stdName" className="form-label">
+            <label htmlFor="stdname" className="form-label">
               Student Name
             </label>
             <input
               type="text"
-              id="stdName"
+              id="stdname"
               className="form-control"
               placeholder="Enter student name"
-              value={stdName}
-              onChange={(e) => setStdName(e.target.value)}
+              value={stdname}
+              onChange={(e) => setstdname(e.target.value)}
             />
           </div>
 

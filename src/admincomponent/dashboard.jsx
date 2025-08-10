@@ -3,13 +3,13 @@ import { AdminContext } from "./adminContext";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const { adminName } = useContext(AdminContext);
+  const { adminName , setAdminName } = useContext(AdminContext);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout=() => {
     localStorage.removeItem("authToken");
-    
-    navigate("/login");
+    setAdminName(null); // Clear admin name from context
+    navigate("/");
   };
 
   const navigateToCoursePage = () => {

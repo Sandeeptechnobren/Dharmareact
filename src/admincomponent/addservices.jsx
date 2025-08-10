@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 function AddServices() {
   const [serviceName, setServiceName] = useState('');
   const [serviceDescription, setServiceDescription] = useState('');
+  const [servicestatus, setServiceStatus] = useState('active');
 
   const handleAddService = async () => {
-    const newService = { serviceName, serviceDescription };
+    const newService = { serviceName, serviceDescription, servicestatus };
 
     if (!serviceName || !serviceDescription) {
       alert('Please fill out all fields before adding a service.');
@@ -13,7 +14,7 @@ function AddServices() {
     }
 
     try {
-      const response = await fetch('http://localhost:4000/api/admin/addservices', {
+      const response = await fetch('http://127.0.0.1:8000/api/services', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newService),
